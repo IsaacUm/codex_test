@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>게시판</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <style>
+    .board { max-width: 780px; margin: 32px auto; }
+    .board .card + .card { margin-top: 14px; }
+    .post-title { font-weight: 700; font-size: 18px; margin: 0 0 6px; }
+    .post-meta { color: var(--muted); font-size: 12px; margin-bottom: 10px; }
+    .post-body { white-space: pre-wrap; }
+    .actions { display:flex; gap:8px; margin-top:10px; }
+    .actions button { padding:6px 10px; border-radius:8px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.04); color:inherit; cursor:pointer; }
+    .actions button:hover { background:rgba(255,255,255,.08); }
+    .empty { color: var(--muted); text-align:center; padding:20px 0; }
+    .field { display:grid; gap:6px; }
+    .field + .field { margin-top:10px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="index.html"><span class="logo" aria-hidden="true"></span><span>MiniSite</span></a>
+      <nav>
+        <a href="index.html">홈</a>
+        <a href="board.html" aria-current="page">게시판</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="board container">
+    <section class="card">
+      <h2 class="section-title">새 글 쓰기</h2>
+      <div class="field">
+        <label for="title">제목</label>
+        <input id="title" type="text" placeholder="제목을 입력하세요" required />
+      </div>
+      <div class="field">
+        <label for="content">내용</label>
+        <textarea id="content" rows="5" placeholder="내용을 입력하세요" required></textarea>
+      </div>
+      <div class="field">
+        <label for="author">작성자(선택)</label>
+        <input id="author" type="text" placeholder="닉네임" />
+      </div>
+      <div class="actions" style="margin-top:12px">
+        <button id="saveBtn" class="btn primary" type="button">등록</button>
+        <button id="clearBtn" class="btn ghost" type="button" title="브라우저 저장소의 모든 글 삭제">전체삭제</button>
+      </div>
+      <p class="note" style="margin-top:6px">이 게시판은 브라우저 로컬에 저장됩니다(기기/브라우저마다 별도). 새로고침해도 유지되지만, 다른 사람에겐 보이지 않습니다.</p>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title" style="margin-bottom:12px">목록</h2>
+      <div id="list"></div>
+      <p id="empty" class="empty" hidden>아직 글이 없습니다.</p>
+    </section>
+  </main>
+
+  <script src="./board.js"></script>
+</body>
+</html>
